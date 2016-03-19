@@ -3,7 +3,7 @@
   the MIDIS 16x2 LCD display.  
 */  
 
-#include "LCD.h"
+#include "LCDdriver.h"
 
 LCD mylcd(0x3E);    //Create LCD object
 
