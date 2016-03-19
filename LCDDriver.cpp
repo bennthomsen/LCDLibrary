@@ -25,7 +25,7 @@
 
 #include "Energia.h"
 #include <Wire.h>
-#include "LCD.h"
+#include "LCDdriver.h"
 
 #define BACKLIGHT 12
 #define BLINK 0x01
