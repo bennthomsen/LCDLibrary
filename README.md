@@ -7,7 +7,7 @@ To use download the zip file containing the .ino, .cpp, and .h files and run the
 
 If you wish to use this in your own sketches then you can simply copy the LCDLibrary.cpp and LCDLibrary.h files into the directory of your new sketch and include the LCDLibrary.h in your sketch
 
-#include "LCDdriver.h"
+\#include "LCDdriver.h"
 
 When using the LCD shield you need to remove the jumper J5, P1.6 that connects P1.6 to LED2 on the Launchpad as P1.6 is used as the I2C Serial Clock (SCL). P1.7 is used as the I2C Serial Data (SDA).
 
