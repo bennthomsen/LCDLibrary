@@ -8,6 +8,7 @@
 LCD mylcd(0x3E);    //Create LCD object
 
 char data;
+unsigned long time;
 
 void setup()
 {
@@ -51,5 +52,7 @@ void loop()
         mylcd.writeString(data); //Write character
       }
     }
-  } 
+  }
+ delay(1000); 
+ time = millis();
 }

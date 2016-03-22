@@ -62,14 +62,10 @@ void LCD::init()
   
       /* Define output pin functionality */
   P2DIR |= BIT4;               // Set P1.6 to output
-  P2SEL |= BIT4;               // Select output P2.4 to be TA1.2
+  P2SEL &= ~BIT4;               // Select output P2.4 to be TA1.2
   P2SEL2 &= ~BIT4;             // Select output P2.4 to be TA1.2
-
-  /* Configure timer A as a pulse width modulator */
-  TA1CCR0 = 1000-1;             // Set maximum count value to determine PWM Frequency = SMCLK/TACCR0 (1MHz/1000 = 1kHz)
-  TA1CCR2 = 999;                // Initialise counter compare value 1 to control Duty Cycle = TACCR1/TACCR0 (500/1000 = 50%)
-  TA1CCTL2 = OUTMOD_7;          // Set output to on when counter resets and off when counter equals TACCR1. Normal PWM.
-  TA1CTL = TASSEL_2 + MC_1;     // Use the SMCLK to clock the counter and set to count up mode
+  P2OUT |= BIT4;
+ 
 }
 
 void LCD::writeString(char data)
@@ -240,6 +236,14 @@ void LCD::backSpace()
 
 void LCD::backLight(char level)
 {
+  P2SEL |= BIT4;               // Select output P2.4 to be TA1.2
+  P2SEL2 &= ~BIT4;             // Select output P2.4 to be TA1.2
+
+  /* Configure timer A as a pulse width modulator */
+  TA1CCR0 = 1000-1;             // Set maximum count value to determine PWM Frequency = SMCLK/TACCR0 (1MHz/1000 = 1kHz)
+  TA1CCR2 = 999;                // Initialise counter compare value 1 to control Duty Cycle = TACCR1/TACCR0 (500/1000 = 50%)
+  TA1CCTL2 = OUTMOD_7;          // Set output to on when counter resets and off when counter equals TACCR1. Normal PWM.
+  TA1CTL = TASSEL_2 + MC_1;     // Use the SMCLK to clock the counter and set to count up mode
   TA1CCR2 = level;                // Initialise counter compare value 1 to control Duty Cycle = TACCR1/TACCR0 (500/1000 = 50%)
 }
   
